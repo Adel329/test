@@ -208,6 +208,15 @@ margin: auto;
 	background: #1D6154;
 }
 
+.error {
+	border: 1px solid red;
+}
+
+.error-element {
+	color: red;
+	margin-top: 70px;
+}
+
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;

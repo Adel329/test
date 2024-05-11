@@ -1,12 +1,13 @@
 const email = document.querySelector("form #email");
-const password = document.querySelector("form #password");
+const password = document.getElementById("mdp");
 const form = document.querySelector("form");
+const sectionLogin = document.getElementById("incorrect")
 const donnees = { login: "Sophie Bluel" };
 
 
 async function postJSON(donnees) {
-     try {
-      const reponse = await fetch("http://localhost:5678/api/users/login", {
+  try {
+    const reponse = await fetch("http://localhost:5678/api/users/login", {
          method: "POST", // ou 'PUT'
          headers: {
            "Content-Type": "application/json",
@@ -14,28 +15,46 @@ async function postJSON(donnees) {
          body: JSON.stringify(donnees),
        });
        const resultat = await reponse.json();
-       console.log("Réussite :", resultat);
+       if (resultat.userId) {
+         console.log("Réussite :", resultat);
+        return true;
+        }
      } catch (erreur) {
        console.error("Erreur :", erreur);
      }
-    }
+}
 
-postJSON({
-  "email": "sophie.bluel@test.tld",
-  "password": "S0phie"
-})
+
 
 
 async function login() {
-  const log = await postJSON(donnees);
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const userEmail = email.value;
-    const userPassword = password.value;
-    console.log(userEmail, userPassword)
-    log.forEach(user => {
-      user.email == userEmail && user.password == userPassword == true
-    });
-  })
+  try {
+    const reponse = await postJSON({
+      "email": email.value,
+      "password": password.value,
+      });
+      if (reponse === true) {
+        console.log("Connexion réussie !");
+        window.location.href = 'index.html';
+      } else {
+        console.log("Identification incorrect !")
+        email.classList.add("error")
+        password.classList.add("error")
+        const errorElement = document.createElement("p")
+        errorElement.textContent = "Votre email ou votre mot de passe est incorrect"
+        errorElement.classList.add("error-element")
+        sectionLogin.appendChild(errorElement)
+        errorElement.innerHTML
+      }
+  }catch (erreur) {
+    console.error("Erreur:", erreur);
+  }
 }
-login()
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  login();
+  
+})
+
+
