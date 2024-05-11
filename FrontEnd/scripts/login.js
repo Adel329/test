@@ -2,39 +2,36 @@ const email = document.querySelector("form #email");
 const password = document.getElementById("mdp");
 const form = document.querySelector("form");
 const sectionLogin = document.getElementById("incorrect")
-const donnees = { login: "Sophie Bluel" };
 
 
-async function postJSON(donnees) {
+async function postJSON(datas) {
   try {
-    const reponse = await fetch("http://localhost:5678/api/users/login", {
+    const response = await fetch("http://localhost:5678/api/users/login", {
          method: "POST", // ou 'PUT'
          headers: {
            "Content-Type": "application/json",
          },
-         body: JSON.stringify(donnees),
+         body: JSON.stringify(datas),
        });
-       const resultat = await reponse.json();
+       const resultat = await response.json();
        if (resultat.userId) {
          console.log("Réussite :", resultat);
-        return true;
-        }
-     } catch (erreur) {
-       console.error("Erreur :", erreur);
+         return resultat;
+        } 
+     } catch (error) {
+       console.error("Erreur :", error);
      }
 }
 
-
-
-
 async function login() {
   try {
-    const reponse = await postJSON({
+    const response = await postJSON({
       "email": email.value,
       "password": password.value,
       });
-      if (reponse === true) {
+      if (response.token) {
         console.log("Connexion réussie !");
+        window.sessionStorage.setItem("token", response.token)
         window.location.href = 'index.html';
       } else {
         console.log("Identification incorrect !")
@@ -46,14 +43,17 @@ async function login() {
         sectionLogin.appendChild(errorElement)
         errorElement.innerHTML
       }
-  }catch (erreur) {
-    console.error("Erreur:", erreur);
+  }catch (error) {
+    console.error("Erreur:", error);
   }
 }
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  login();
+  if (email.value.length > 0 && password.value.length > 0) {
+    console.log(email.value)
+    login();  
+  }
   
 })
 

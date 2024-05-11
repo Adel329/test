@@ -72,9 +72,13 @@ function filterWorks(id){
         generateGallery(listWorks)
     }else {
         generateGallery(worksFiltered)
-    }
+    }   
+}
 
-   
+function isUserConnected(){
+    if  (window.sessionStorage.getItem("token") !== null) {
+        
+    }
 }
 
 
