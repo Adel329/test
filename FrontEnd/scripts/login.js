@@ -27,7 +27,7 @@ async function login() {
   try {
     const response = await postJSON({
       "email": email.value,
-      "password": password.value,
+      "password": password.value
       });
       if (response.token) {
         console.log("Connexion réussie !");
@@ -56,5 +56,4 @@ form.addEventListener("submit", async (e) => {
   }
   
 })
-
 

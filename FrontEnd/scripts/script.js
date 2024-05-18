@@ -1,5 +1,11 @@
+const modal = document.querySelector(".modal-container")
+const editedContainer = document.querySelector(".loged-container")
 const divFilter = document.querySelector(".filter");
 const divGallery = document.querySelector(".gallery");
+const login = document.getElementById("login");
+const edit = document.querySelector(".edit")
+const postGallery = document.getElementById("add-project")
+const cross = document.querySelector(".fa-xmark")
 let listWorks = [];
 
 
@@ -23,7 +29,6 @@ function getCategories(){
     .then(json => {
         listCategory = json;
         generateFilter();
-        console.log(listCategory);
     })
     .catch()
 }
@@ -53,8 +58,8 @@ function generateFilter(){
     listCategory.forEach(category => {
         const btn = document.createElement("button");
         btn.textContent = category.name;
-        btn.id = category.id
-        btn.classList.add("filter-button")
+        btn.id = category.id;
+        btn.classList.add("filter-button");
         divFilter.appendChild(btn);
         btn.addEventListener("click", () => filterWorks(category.id));
     })
@@ -69,18 +74,39 @@ function filterWorks(id){
 
     divGallery.innerHTML = "";
     if (worksFiltered.length === 0  ){
-        generateGallery(listWorks)
+        generateGallery(listWorks);
     }else {
-        generateGallery(worksFiltered)
+        generateGallery(worksFiltered);
     }   
 }
 
 function isUserConnected(){
     if  (window.sessionStorage.getItem("token") !== null) {
-        
+        console.log("Connexion Réussie !");
+        login.textContent = "logout";
+        editedContainer.style.display = "flex";
+        divFilter.style.display = "none";
+        edit.style.display = "flex" 
+        login.addEventListener("click", () => {
+            window.sessionStorage.removeItem("token");
+            window.location.reload();
+        })
+        postGallery.addEventListener("click", () => {
+            modal.style.display = "flex"
+        })
+        cross.addEventListener("click", () => {
+            modal.style.display = "none"
+        })
+        modal.addEventListener("click", (e) => {
+            if (e.target.className === "modal-container"){
+                modal.style.display = "none"
+            }
+        })
     }
 }
 
 
+
 getWorks()
 getCategories()
+isUserConnected()

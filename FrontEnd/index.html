@@ -10,8 +10,22 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="scripts/script.js" defer></script>
+	<script src="https://kit.fontawesome.com/5f0ad486ce.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<article class="modal-container">
+		<div class="edit-gallery">
+			<i class="fa-solid fa-xl fa-xmark"></i>
+			<h3 class="title-modal">Galerie photo</h3>
+			<button class="edit-validation">Ajouter une photo</button>
+		</div>
+	</article>
+	<article class="loged-container">
+		<div class="edited">
+			<span><i class="fa-regular pen-header fa-pen-to-square"></i></span>
+			<h3 class="title-loged">Mode édition</h3>
+		</div>
+	</article>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -38,7 +52,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="project">
+			<h2>Mes Projets</h2>
+			<div id="add-project" class="edit">
+				<span><i class="fa-regular fa-pen-to-square"></i></span>
+				<p>modifier</p>
+			</div>
+		</div>
 		<div class="filter">
 			<!--Genere en js-->
 		</div>
