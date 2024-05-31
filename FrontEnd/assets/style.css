@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -36,27 +37,9 @@ ol, ul {
 	list-style: none;
 }
 
-.modal-container {
-	display: none;
-	position: fixed;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(211, 211, 211, 0.451);
-}
-
-.edit-gallery {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	border-radius: 10px;
-	width: 40%;
-	height: 50%;
+.gallery img {
+	width: 316px;
+	height: 563px;
 }
 
 .fa-xmark {
@@ -67,11 +50,19 @@ ol, ul {
 }
 
 .title-modal {
+	margin-top: 50px;
 	font-size: 26px;
 	font-weight: 400;
 	line-height: 30.5px;
 	text-align: center;
+}
 
+.title-edit {
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	margin: 20px;
 }
 
 .edit-validation {
@@ -85,6 +76,7 @@ ol, ul {
 	padding: 10px;
 	text-align: center;
 	border-radius: 60px ;
+	cursor: pointer;
 
 }
 
@@ -105,6 +97,7 @@ ol, ul {
 .pen-header {
 	color: white;
 }
+
 
 .title-loged {
 	color: white;
@@ -298,11 +291,9 @@ li:hover, #login:hover{
 	background: #1D6154;
 }
 
-.error {
-	border: 1px solid red;
-}
-
-.error-element {
+.error-loged {
+	display: none;
+	justify-content: center;
 	color: red;
 	margin-top: 70px;
 }
@@ -324,3 +315,161 @@ footer nav ul {
 	margin: 2em
 }
 
+/* MODAL */
+
+.modal-container {
+	display: none;
+	position: fixed;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(211, 211, 211, 0.451);
+}
+
+.edit-gallery {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	border-radius: 10px;
+	width: 630px;
+	height: 670px;
+}
+
+.gallery-container {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	justify-content: space-between;
+	width: 450px;
+	height: 450px;
+	margin-top: 50px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid black;
+
+}
+
+.gallery-container figure {
+	display: flex;
+	width: 77px;
+	height: 102px;
+}
+
+.trash-container {
+	position: absolute;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	border-radius: 2px 0px 0px 0px;
+	background-color: black;
+}
+
+.fa-trash-can {
+	position: absolute;
+	cursor: pointer;
+	top: 3px;
+	right: 4px;
+	color: white;
+}
+
+.file-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #E8F1F6;
+	padding: 30px 0;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	gap: 5px;
+}
+
+.fa-arrow-left {
+	position: absolute;
+	top: 25px;
+	left: 20px;
+	cursor: pointer;
+}
+
+.add-container {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	width: 65%;
+	padding: 0 30px;
+}
+
+.add-info-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 15px;
+	width: 65%;
+	padding: 0 30px;
+}
+
+#form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.fa-image {
+	font-size: 5rem;
+	color: #B9C5CC;
+}
+
+#file {
+	display: none;
+}
+
+#image-file {
+	display: none;
+	max-width: 60%;
+}
+
+.button {
+	background:#CBD6DC;
+	color: #306685;
+	padding: 10px 15px;
+	border-radius: 50px;
+
+}
+
+
+.validation {
+	background: grey;
+}
+
+.solid {
+	margin-top: 5px;
+	border-bottom: 1px solid black;
+}
+
+#title, #category{
+	padding: 15px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.add-project-container {
+	position: relative;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	border-radius: 10px;
+	width: 630px;
+	height: 670px;
+	gap: 20px;
+
+}

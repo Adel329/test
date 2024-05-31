@@ -17,7 +17,39 @@
 		<div class="edit-gallery">
 			<i class="fa-solid fa-xl fa-xmark"></i>
 			<h3 class="title-modal">Galerie photo</h3>
-			<button class="edit-validation">Ajouter une photo</button>
+			<div class="gallery-container">
+			</div>
+			<button class="edit-validation" id="button">Ajouter une photo</button>
+		</div>
+		<div id="modal-add-container" class="add-project-container">
+			<span>
+				<i class="fa-solid fa-xl fa-arrow-left"></i>
+			</span>
+			<span>
+				<i class="fa-solid fa-xl fa-xmark" id="cross2"></i>
+			</span>
+			<h3 class="title-edit">Ajout photo</h3>
+			<div class="file-container">
+				<span>
+					<i id="logo-image" class="fa-regular fa-image"></i>
+				</span>
+				<form id="form">
+					<div class="add-container">
+						<label class="button" for="file">+Ajouter photo</label>
+						<input type="file" id="file" name="image">
+						<img  id="image-file" src="#" alt="apercut">
+						<p>jpn, png : 4mo max</p>
+					</div>
+				</div>
+				<div class="add-info-container">
+					<label for="title">Titre</label>
+					<input type="text" id="title" name="title">
+					<label for="category">Categorie</label>
+					<select name="category" id="category"></select>
+					<span class="solid"></span>
+					<button class="edit-validation validation" disabled>Valider</button>
+				</div>
+			</form>
 		</div>
 	</article>
 	<article class="loged-container">
