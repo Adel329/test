@@ -27,7 +27,7 @@ const btnValidation = document.getElementById("button");
 // Image Modal
 const img = document.querySelector(".add-container img");
 const label = document.querySelector(".add-container label")
-const input = document.querySelector(".add-container input") 
+const input = document.querySelector(".add-container #file") 
 const p = document.querySelector(".add-container p")
 const logoImg = document.getElementById("logo-image")
 
@@ -196,6 +196,7 @@ function modalAddProject() {
     btnValidation.addEventListener("click", () => {
         modalAddFile.style.display = "flex"
         editGallery.style.display = "none"
+        modalCategory()
     });
     arrowLeft.addEventListener("click", () => {
         modalAddFile.style.display = "none"
@@ -251,8 +252,7 @@ form.addEventListener("submit", async (e) => {
         });
         const data = await response.json();
         console.log("Photo ajouté !", data);
-        getWorks();
-        modalCategory();
+        //getWorks();
     } catch (error) {
         console.log("Erreur lors de l'ajout de la photo", error);
     }
@@ -261,8 +261,9 @@ form.addEventListener("submit", async (e) => {
 // Remplissage des inputs
 function inputsCompleted() {
     const btnEdit = document.querySelector(".add-info-container button")
-    form.addEventListener("input", () => {
-        if (!title.value =="" && !categoryModal =="" && !input.value =="") {
+    form.addEventListener("change", () => {
+        console.log(titleModal.value, categoryModal.value , input.value)
+        if (!titleModal.value =="" && !categoryModal.value =="" && !input.value =="") {
             btnEdit.classList.remove("validation")
             btnEdit.disabled = false
         }
@@ -276,5 +277,4 @@ function inputsCompleted() {
 getWorks()
 isUserConnected()
 modalAddProject()
-modalCategory()
 inputsCompleted()
